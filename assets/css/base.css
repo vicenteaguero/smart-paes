@@ -35,6 +35,7 @@
     --color-golden: #FFD700;
     --color-green: #7cb46b;
     --color-dark-green: #1A281F;
+    --color-dark-red: #8B0000;
     --color-answered: 26, 40, 31;
     --color-discarded: 255, 0, 0;
     --primary-font-family: 'Nohemi', sans-serif;
@@ -108,6 +109,7 @@ img {
 }
 
 /* Nav */
+
 nav {
     display: flex;
     justify-content: flex-start;
