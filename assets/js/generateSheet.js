@@ -1,8 +1,8 @@
 // assets/js/generateSheet.js
 
-function generateAnswerSheet(n_questions, n_options) {
+function generateAnswersSheet(n_questions, n_options) {
 
-    const container = document.getElementById('answerSheet');
+    const container = document.getElementById('answersSheet');
 
     container.innerHTML = '';
 
@@ -115,6 +115,7 @@ function optionLabelClick(optionLabel, optionContainer, questionDiv) {
             optionContainer.querySelector('.discard').textContent = "Descartar";
             optionContainer.querySelector('.stars').style.display = 'none';
         }
+        questionDiv.classList.remove('unanswered');
         questionDiv.setAttribute('data-answer', optionLabel.textContent[0]);
         document.querySelectorAll('.question[data-answer]').forEach(q => {
             if (q === questionDiv) {
