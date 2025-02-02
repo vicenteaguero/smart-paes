@@ -1,5 +1,9 @@
 // assets/js/generateSheet.js
 
+function resetAnswers() {
+    localStorage.removeItem('answer_json');
+}
+
 function generateAnswersSheet(n_questions, n_options) {
     const container = document.getElementById('answersSheet');
     container.innerHTML = '';
@@ -70,25 +74,49 @@ function generateAnswersSheet(n_questions, n_options) {
 
     if (localStorage.getItem('answer_json')) {
         const storedAnswers = JSON.parse(localStorage.getItem('answer_json')).questions;
-        console.log(storedAnswers);
+        console.log("✅ Cargando respuestas desde localStorage:", storedAnswers);
+
         storedAnswers.forEach((q, index) => {
             const questionDiv = document.querySelectorAll('.question')[index];
+
+            // ✅ Restore confidence level
             questionDiv.querySelector('.questionHeader select').value = q.confidence;
+
+            // ✅ Restore answered question
             if (q.answered) {
-                questionDiv.setAttribute('data-answer', q.answer);
+                const optionLabel = [...questionDiv.querySelectorAll('.optionLabel')]
+                    .find(label => label.textContent.trim().startsWith(q.answer));
+                if (optionLabel) {
+                    optionLabelClick(optionLabel, optionLabel.parentNode, questionDiv); // ✅ Correctly restore answer
+                }
             }
+
+            // ✅ Restore options states
             q.options.forEach((option, optIndex) => {
                 const optionContainer = questionDiv.querySelectorAll('.optionRow')[optIndex];
+                const optionLabel = optionContainer.querySelector('.optionLabel');
+                const discardButton = optionContainer.querySelector('button.discard');
+
                 if (option.discarded) {
-                    optionContainer.classList.add('discarded');
+                    toggleDiscardState(optionLabel, optionContainer, questionDiv, optionContainer.querySelector('.stars'), discardButton); // ✅ Proper discard restore
                 }
+
+                // ✅ Restore highlighted stars
+                const starContainer = optionContainer.querySelector('.stars');
                 optionContainer.querySelectorAll('.star').forEach((star, sIndex) => {
                     if (sIndex < option.highlightedStars) {
                         star.classList.add('highlight');
                     }
                 });
+
+                // ✅ Ensure the stars are visible if needed
+                if (option.highlightedStars > 0) {
+                    starContainer.style.display = 'inline';
+                }
             });
         });
+
+        console.log("✅ Estado restaurado correctamente.");
     }
 }
 
@@ -146,3 +174,10 @@ function toggleDiscardState(optionLabel, optionContainer, questionDiv, starConta
         }
     }
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('restoreAnswersSheet').onclick = function () {
+        resetAnswers();
+        generateAnswersSheet(10, 4);
+    }
+});
