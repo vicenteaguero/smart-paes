@@ -84,6 +84,12 @@ function generateAnswersJSON() {
 
 // Send answers to Google Apps Script and store locally
 function sendAnswersJSON() {
+    const sendButton = document.getElementById('saveAnswersJSON'); // ✅ Get the button
+    if (!sendButton) return; // ✅ Prevent errors if button is missing
+
+    sendButton.disabled = true; // ✅ Disable button to prevent spamming
+    sendButton.textContent = "Enviando..."; // ✅ Change text to indicate action
+
     const scriptURL = "https://script.google.com/macros/s/AKfycbzF8xMtL6ZPaV8oQT-xc0XCLLYsmNhRLoBSX_h-QlWrV90pv3ImhCQrUE9p0GsuM1jD0A/exec";
     const answerData = generateAnswersJSON();
 
@@ -99,6 +105,9 @@ function sendAnswersJSON() {
                 q.classList.add('unanswered');
             }
         });
+
+        sendButton.disabled = false; // ✅ Re-enable button if submission is blocked
+        sendButton.textContent = "Guardar y Finalizar Ensayo"; // ✅ Restore text
         return;
     }
 
@@ -108,9 +117,19 @@ function sendAnswersJSON() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(answerData)
     })
-        .then(response => console.log("Response (opaque):", response))
-        .catch(error => console.error("Error:", error));
+    .then(() => {
+        console.log("✅ Datos enviados. Redirigiendo...");
+        setTimeout(() => {
+            window.location.href = "/ensayos/saved"; // ✅ Redirect after 1 second
+        }, 1000);
+    })
+    .catch(error => {
+        console.error("❌ Error al enviar datos:", error);
+        sendButton.disabled = false; // ✅ Re-enable button on error
+        sendButton.textContent = "Guardar y Finalizar Ensayo"; // ✅ Restore text
+    });
 }
+
 
 // Load stored data on page load
 document.addEventListener('DOMContentLoaded', function () {
