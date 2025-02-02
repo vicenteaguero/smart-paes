@@ -1,23 +1,64 @@
-button.generateAnswer {
+.ensayos-buttons, .ensayos-buttons-centered {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    vertical-align: middle;
+    gap: var(--padding-big);
+}
+
+.ensayos-buttons-centered {
+    justify-content: center;
+    padding-bottom: var(--padding-huge);
+}
+
+button.generateAnswersSheet, button.generateAnswersJSON, button.saveAnswersJSON {
     display: inline-block;
     align-items: center;
     justify-content: center;
     vertical-align: middle;
     width: fit-content;
-    min-width: 33%;
     height: fit-content;
     padding: var(--padding-large) var(--padding-huge);
     margin: 0;
     background-color: var(--color-dark-green);
     color: var(--color-white);
-    border: none;
+    border: 3px solid var(--color-white);
     border-radius: 6px;
     font-family: var(--primary-font-family);
     font-weight: bold;
     font-size: var(--fontsize-large);
 }
 
-#answerSheet {
+button.generateAnswersSheet {
+    padding: var(--padding-normal);
+    background-color: var(--color-ecru);
+    color: var(--color-black);
+    font-size: var(--fontsize-normal);
+}
+
+button.saveAnswersJSON {
+    background-color: var(--color-ecru);
+    color: var(--color-black);
+}
+
+button.saveAnswersJSON:hover {
+    background-color: var(--color-dark-red);
+    color: var(--color-white);
+    transform: scale(1.05) translateY(5px) translateX(10px);
+    transition: transform 0.5s;
+}
+
+button.generateAnswersSheet:hover {
+    transform: scale(1.05) translateY(5px) translateX(10px);
+    transition: transform 0.5s;
+}
+
+button.generateAnswersJSON:hover {
+    transform: scale(1.05) translateY(5px) translateX(-10px);
+    transition: transform 0.5s;
+}
+
+#answersSheet {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: var(--padding-big);
@@ -33,24 +74,24 @@ button.generateAnswer {
 }
 
 @media screen and (max-width: 1100px) {
-    #answerSheet {
+    #answersSheet {
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
 @media screen and (max-width: 850px) {
-    #answerSheet {
+    #answersSheet {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media screen and (max-width: 600px) {
-    #answerSheet {
+    #answersSheet {
         grid-template-columns: 1fr;
     }
 }
 
-#answerSheet {
+#answersSheet {
 
     .question {
         display: flex;
@@ -138,6 +179,10 @@ button.generateAnswer {
     .question:has(.optionRow.answered) {
         background-color: rgba(var(--color-answered), 0.25);
         border: 5px solid var(--color-green);
+    }
+
+    .question.unanswered {
+        border: 5px solid var(--color-dark-red);
     }
 
     .optionRow.discarded {
