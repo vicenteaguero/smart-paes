@@ -1,5 +1,12 @@
 # .gitignore
 
-html_degrees/
+__pycache__/
+
+data/demre/
+!data/demre/processed/
+
+data/demre_open/
+
+data/html_degrees/
 
 *.pyc
