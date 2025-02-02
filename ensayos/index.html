@@ -10,11 +10,13 @@
         <link rel="stylesheet" href="/assets/css/base.css" />
         <link rel="stylesheet" href="/assets/css/ensayos.css" />
         <script src="/assets/js/generateSheet.js"></script>
+        <script src="/assets/js/generateAnswersJSON.js"></script>
     </head>
     <body>
         <header>
             <nav>
-                <img class="logo" src="/assets/img/logo-dark.png" alt="SmartPAES" />
+                <img class="logo" src="/assets/img/logo-dark.png"
+                    alt="SmartPAES" />
                 <ul>
                     <li><a href="/">Inicio</a></li>
                     <li><a href="/ensayos">Ensayos</a></li>
@@ -23,13 +25,26 @@
         </header>
         <div class="content">
             <h1 class="page-title">Ensayos</h1>
-            <button class="generateAnswer" onclick="generateAnswerSheet(60, 4)">
-                Generar Hoja de Respuestas
-            </button>
-            <div id="answerSheet"></div>
+            <div class="ensayos-buttons">
+                <button class="generateAnswersSheet" onclick="generateAnswersSheet(60, 4)">
+                    Eliminar Respuestas
+                </button>
+                <button class="generateAnswersJSON" id="generateAnswersJSON">
+                    Guardar Respuestas
+                </button>
+            </div>
+            <div id="answersSheet"></div>
+            <div class="ensayos-buttons-centered">
+                <button class="generateAnswersJSON" id="generateAnswersJSON">
+                    Guardar Respuestas
+                </button>
+                <button class="saveAnswersJSON" id="saveAnswersJSON">
+                    Guardar y Finalizar Ensayo
+                </button>
+            </div>
         </div>
         <script>
-            generateAnswerSheet(60, 4);
+            generateAnswersSheet(10, 4);
         </script>
     </body>
 </html>
