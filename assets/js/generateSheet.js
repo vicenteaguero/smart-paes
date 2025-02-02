@@ -1,45 +1,34 @@
 // assets/js/generateSheet.js
 
 function generateAnswersSheet(n_questions, n_options) {
-
     const container = document.getElementById('answersSheet');
-
     container.innerHTML = '';
 
     for (let i = 1; i <= n_questions; i++) {
-
         const questionDiv = document.createElement('div');
-
         questionDiv.className = 'question';
 
         const questionHeader = document.createElement('div');
         questionHeader.className = 'questionHeader';
 
         const questionLabel = document.createElement('label');
-
         questionLabel.textContent = `Pregunta ${i}`;
         questionHeader.appendChild(questionLabel);
 
         const confidenceSelect = document.createElement('select');
-
         for (let j = 0; j <= 100; j += 10) {
-
             const option = document.createElement('option');
             option.value = j;
             option.textContent = `${j}%`;
             confidenceSelect.appendChild(option);
-
         }
-
         questionHeader.appendChild(confidenceSelect);
-
         questionDiv.appendChild(questionHeader);
 
         const optionsDiv = document.createElement('div');
         optionsDiv.className = 'optionsSection';
 
         for (let k = 0; k < n_options; k++) {
-
             const optionContainer = document.createElement('div');
             optionContainer.className = 'optionRow';
 
@@ -51,44 +40,55 @@ function generateAnswersSheet(n_questions, n_options) {
             const starContainer = document.createElement('div');
             starContainer.className = 'stars';
             starContainer.style.display = 'none';
-
             for (let s = 1; s <= 5; s++) {
-
                 const star = document.createElement('span');
                 star.className = 'star';
-
                 star.textContent = '★';
                 star.dataset.value = s;
-                star.onclick = function () {
-                    highlightStars(this);
-                };
-
+                star.onclick = function () { highlightStars(this); };
                 starContainer.appendChild(star);
-
             }
-
             optionContainer.appendChild(starContainer);
 
             const toggleButton = document.createElement('button');
             toggleButton.className = 'discard';
             toggleButton.textContent = "Descartar";
-
             toggleButton.onclick = function () {
                 toggleDiscardState(optionLabel, optionContainer, questionDiv, starContainer, toggleButton);
             };
-
             optionContainer.appendChild(toggleButton);
-
             optionLabel.onclick = function () {
                 optionLabelClick(optionLabel, optionContainer, questionDiv);
             };
 
             optionsDiv.appendChild(optionContainer);
-
         }
 
         questionDiv.appendChild(optionsDiv);
         container.appendChild(questionDiv);
+    }
+
+    if (localStorage.getItem('answer_json')) {
+        const storedAnswers = JSON.parse(localStorage.getItem('answer_json')).questions;
+        console.log(storedAnswers);
+        storedAnswers.forEach((q, index) => {
+            const questionDiv = document.querySelectorAll('.question')[index];
+            questionDiv.querySelector('.questionHeader select').value = q.confidence;
+            if (q.answered) {
+                questionDiv.setAttribute('data-answer', q.answer);
+            }
+            q.options.forEach((option, optIndex) => {
+                const optionContainer = questionDiv.querySelectorAll('.optionRow')[optIndex];
+                if (option.discarded) {
+                    optionContainer.classList.add('discarded');
+                }
+                optionContainer.querySelectorAll('.star').forEach((star, sIndex) => {
+                    if (sIndex < option.highlightedStars) {
+                        star.classList.add('highlight');
+                    }
+                });
+            });
+        });
     }
 }
 
