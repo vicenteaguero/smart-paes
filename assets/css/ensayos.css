@@ -11,7 +11,7 @@
     padding-bottom: var(--padding-huge);
 }
 
-button.generateAnswersSheet, button.generateAnswersJSON, button.saveAnswersJSON {
+button.restoreAnswersSheet, button.generateAnswersJSON, button.saveAnswersJSON {
     display: inline-block;
     align-items: center;
     justify-content: center;
@@ -29,7 +29,7 @@ button.generateAnswersSheet, button.generateAnswersJSON, button.saveAnswersJSON 
     font-size: var(--fontsize-large);
 }
 
-button.generateAnswersSheet {
+button.restoreAnswersSheet {
     padding: var(--padding-normal);
     background-color: var(--color-ecru);
     color: var(--color-black);
@@ -48,7 +48,7 @@ button.saveAnswersJSON:hover {
     transition: transform 0.5s;
 }
 
-button.generateAnswersSheet:hover {
+button.restoreAnswersSheet:hover {
     transform: scale(1.05) translateY(5px) translateX(10px);
     transition: transform 0.5s;
 }
@@ -56,6 +56,13 @@ button.generateAnswersSheet:hover {
 button.generateAnswersJSON:hover {
     transform: scale(1.05) translateY(5px) translateX(-10px);
     transition: transform 0.5s;
+}
+
+button.restoreAnswersSheet:active,
+button.generateAnswersJSON:active,
+button.saveAnswersJSON:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease-in-out;
 }
 
 #answersSheet {
@@ -213,4 +220,40 @@ button.generateAnswersJSON:hover {
         color: var(--color-golden);
     }
 
+}
+
+/* Saved */
+
+h1.page-title.saved {
+    text-align: center;
+}
+
+p.success-message {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    font-size: var(--fontsize-large);
+    color: var(--color-white);
+    font-weight: bold;
+    margin-bottom: var(--padding-huge);
+}
+
+.return-button {
+    display: inline-block;
+    padding: var(--padding-large) var(--padding-huge);
+    background-color: var(--color-dark-green);
+    color: var(--color-white);
+    font-family: var(--primary-font-family);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: var(--fontsize-large);
+    border-radius: 6px;
+    border: 3px solid var(--color-white);
+}
+
+.return-button:hover {
+    background-color: var(--color-ecru);
+    color: var(--color-black);
+    transform: scale(1.05);
+    transition: transform 0.3s;
 }
