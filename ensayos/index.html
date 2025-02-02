@@ -1,0 +1,35 @@
+<!-- ensayos/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Ensayos - SmartPAES</title>
+        <link rel="icon" type="image/x-icon" href="/assets/img/favicon.png" />
+        <link rel="stylesheet" href="/assets/css/base.css" />
+        <link rel="stylesheet" href="/assets/css/ensayos.css" />
+        <script src="/assets/js/generateSheet.js"></script>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <img class="logo" src="/assets/img/logo-dark.png" alt="SmartPAES" />
+                <ul>
+                    <li><a href="/">Inicio</a></li>
+                    <li><a href="/ensayos">Ensayos</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="content">
+            <h1 class="page-title">Ensayos</h1>
+            <button class="generateAnswer" onclick="generateAnswerSheet(60, 4)">
+                Generar Hoja de Respuestas
+            </button>
+            <div id="answerSheet"></div>
+        </div>
+        <script>
+            generateAnswerSheet(60, 4);
+        </script>
+    </body>
+</html>
