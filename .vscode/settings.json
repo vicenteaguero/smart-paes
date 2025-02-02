@@ -2,6 +2,7 @@
     "conventionalCommits.scopes": [
         "general",
         "scrape",
-        "notebook"
+        "notebook",
+        "website"
     ]
 }
