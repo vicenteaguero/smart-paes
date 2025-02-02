@@ -1,0 +1,24 @@
+output-format = "concise"
+line-length = 100
+lint.extend-select = [
+  "Q", # flake8-quotes
+  "N", # pep8-naming
+  "UP", # Python upgrade checks
+  "B", # flake8-bugbear
+  "ISC", # isort checks
+]
+lint.ignore = ["D100", "D104", "D203", "E225", "E226"]
+lint.select = ["Q", "N", "UP", "B", "ISC", "F", "E", "W"]
+
+[lint.flake8-quotes]
+avoid-escape = true
+docstring-quotes = "double"
+inline-quotes = "single"
+
+[lint.pydocstyle]
+convention = "numpy"
+
+[lint.isort]
+known-third-party = ["pandas", "os"]
+order-by-type = false
+section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
