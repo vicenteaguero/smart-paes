@@ -1,0 +1,280 @@
+/* website/src/styles/base.css */
+
+/* Fonts */
+@font-face {
+  font-family: "Nohemi";
+  src: url("../assets/fonts/Nohemi-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("../assets/fonts/Satoshi-Bold.otf") format("opentype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("../assets/fonts/Satoshi-Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --padding-huge: 3rem;
+  --padding-big: 2rem;
+  --padding-large: 1.5rem;
+  --padding-normal: 1rem;
+  --padding-small: 0.5rem;
+  --padding-tiny: 0.25rem;
+
+  --color-black: #111111;
+  --color-white: #ececee;
+  --color-gray: #a5a5a5;
+  --color-ecru: #c2b27f;
+  --color-golden: #ffd700;
+  --color-green: #7cb46b;
+  --color-dark-green: #1a281f;
+  --color-dark-red: #8b0000;
+  --color-answered: 26, 40, 31;
+  --color-discarded: 255, 0, 0;
+  --color-gray-light: #d3d3d3;
+  --color-gray-dark: #444444;
+  --color-chile-blue: #0032a0;
+  --color-chile-red: #da291c;
+  --color-chile-light-blue: #dce9f4;
+  --color-chile-light-red: #f9cccf;
+  --color-red: #e63946;
+  --color-blue: #a8dadc;
+  --color-navy: #457b9d;
+  --color-dark-blue-1: #1d3557;
+  --color-dark-blue-2: #212d40;
+  --color-dark-navy: #364156;
+  --color-dark-rose: #7d4e57;
+  --color-dark-orange: rgb(239 68 68);
+  --color-success: #7cb46b;
+  --color-warning: #ffa500;
+  --color-info: #1e90ff;
+
+  --primary-font-family: "Nohemi", sans-serif;
+  --secondary-font-family: "Satoshi", sans-serif;
+  --monospace-font-family: "Courier New", monospace;
+
+  --fontsize-huge: 3rem;
+  --fontsize-big: 2rem;
+  --fontsize-large: 1.5rem;
+  --fontsize-semi-large: 1.25rem;
+  --fontsize-normal: 1rem;
+  --fontsize-small: 0.75rem;
+}
+
+/* Light Theme */
+:root {
+  --color-background: var(--color-white);
+  --color-soft-background: var(--color-gray-light);
+
+  --color-title-primary: var(--color-black);
+  --color-title-secondary: var(--color-ecru);
+
+  --color-subtitle-primary: var(--color-ecru);
+  --color-subtitle-secondary: var(--color-ecru);
+
+  --color-text-primary: var(--color-black);
+  --color-text-secondary: var(--color-white);
+  --color-text-tertiary: var(--color-ecru);
+
+  --color-border: var(--color-gray);
+
+  --color-link-primary: var(--color-dark-red);
+  --color-link-primary-hover: var(--color-dark-green);
+  --color-link-secondary: var(--color-dark-red);
+  --color-link-secondary-hover: var(--color-dark-green);
+
+  --color-footer: var(--color-black);
+  --color-footer-text: var(--color-white);
+
+  --color-nav: var(--color-black);
+  --color-nav-title: var(--color-white);
+  --color-nav-ul: var(--color-black);
+  --color-nav-ul-mobile: var(--color-gray);
+  --color-nav-li: var(--color-white);
+  --color-nav-li-mobile: var(--color-black);
+  --color-nav-li-hover: var(--color-ecru);
+  --color-nav-li-hover-mobile: var(--color-dark-orange);
+  --color-nav-hamburguer: var(--color-white);
+  --color-nav-toggle-bg: var(--color-dark-green);
+  --color-nav-toggle-text: var(--color-white);
+  --color-nav-toggle-bg-hover: var(--color-ecru);
+  --color-nav-toggle-text-hover: var(--color-black);
+
+  --color-button-primary: var(--color-dark-green);
+  --color-button-primary-border: var(--color-gray);
+  --color-button-primary-hover: var(--color-ecru);
+  --color-button-primary-border-hover: var(--color-black);
+  --color-button-secondary: var(--color-white);
+  --color-button-secondary-hover: var(--color-black);
+  --color-button-tertiary: var(--color-chile-red);
+  --color-button-tertiary-hover: var(--color-chile-red);
+
+  --color-input-background: var(--color-white);
+  --color-input-border: var(--color-gray);
+  --color-input-text: var(--color-black);
+}
+
+[data-theme="dark"] {
+  --color-background: var(--color-dark-green);
+  --color-title-primary: var(--color-white);
+  --color-text-primary: var(--color-white);
+  --color-text-secondary: var(--color-black);
+  --color-button-primary: var(--color-black);
+  --color-button-primary-border: var(--color-ecru);
+  --color-button-primary-hover: var(--color-ecru);
+  --color-button-primary-border-hover: var(--color-white);
+  --color-button-secondary: var(--color-white);
+  --color-button-secondary-hover: var(--color-black);
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  transition: background 1s ease;
+}
+
+.app-container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.main-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 100%;
+  max-width: calc(100vw - 2 * var(--padding-big));
+  padding: var(--padding-big);
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  padding: 0;
+  margin: 0;
+  font-family: var(--primary-font-family);
+  font-weight: bold;
+}
+
+h1,
+h3,
+h5 {
+  color: var(--color-title-primary);
+}
+
+h2,
+h4,
+h6 {
+  color: var(--color-title-secondary);
+}
+
+h1 {
+  font-size: var(--fontsize-huge);
+}
+
+h2 {
+  font-size: var(--fontsize-big);
+}
+
+h3 {
+  font-size: var(--fontsize-large);
+}
+
+h4 {
+  font-size: var(--fontsize-semi-large);
+}
+
+h5,
+h6 {
+  font-size: var(--fontsize-normal);
+}
+
+p {
+  padding: var(--padding-normal) 0;
+  margin: 0;
+  font-family: var(--secondary-font-family);
+}
+
+a {
+  padding: 0;
+  margin: 0;
+  color: var(--color-link);
+  font-family: var(--secondary-font-family);
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--color-link-hover);
+}
+
+button {
+  padding: var(--padding-small);
+  margin: var(--padding-small);
+  background-color: var(--color-button-primary);
+  color: var(--color-button-secondary);
+  font-family: var(--secondary-font-family);
+  font-weight: bold;
+  border: 2px solid var(--color-button-primary-border);
+  border-radius: var(--padding-normal);
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--color-button-primary-hover);
+  color: var(--color-button-secondary-hover);
+  border: 2px solid var(--color-button-primary-border-hover);
+}
+
+@media (max-width: 800px) {
+  .app-container {
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+  }
+
+  .main-content {
+    width: 100%;
+    max-width: 95vw;
+    padding: 0;
+    padding-top: calc(var(--padding-huge) + 2 * var(--padding-normal));
+  }
+
+  :root {
+    --fontsize-huge: 2rem;
+    --fontsize-big: 1.5rem;
+    --fontsize-large: 1.25rem;
+    --fontsize-semi-large: 1.25rem;
+    --fontsize-normal: 1rem;
+    --fontsize-small: 0.75rem;
+  }
+}
