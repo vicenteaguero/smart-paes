@@ -2,7 +2,6 @@
 
 from bs4 import BeautifulSoup
 from tqdm import tqdm
-import pandas as pd
 import requests
 import os
 
@@ -35,7 +34,7 @@ def get_links(
             for post in soup
             if post.find_all(a_info[0], class_=a_info[1])
         ]
-        
+
 def get_soups(urls: list) -> list:
     soups = dict()
     for url in tqdm(urls):
@@ -72,13 +71,13 @@ def save_htmls(
         file = file.replace(folder, '').strip('-')
         with open(os.path.join(SAVE_FOLDER, folder, file+'.html'), 'w') as f:
             f.write(html)
-            
+
 def get_htmls(url: str) -> dict:
     folder = url.split('/')[2].replace('.', '-')
     save_folder = os.path.join(SAVE_FOLDER, folder)
     pages = dict()
     for file in os.listdir(save_folder):
-        with open(os.path.join(save_folder, file), 'r') as f:
+        with open(os.path.join(save_folder, file)) as f:
             pages[file.split('.html')[0]] = BeautifulSoup(f.read(), 'html.parser')
     return pages
 
