@@ -11,7 +11,7 @@ import "./styles/ensayos.css";
 import "./styles/methodology.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <BrowserRouter>
+  <BrowserRouter basename="/">
     <App />
   </BrowserRouter>,
 );

@@ -28,6 +28,7 @@ jobs:
           cd website
           npm install
           npm run build
+          cp website/dist/index.html website/dist/404.html
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
