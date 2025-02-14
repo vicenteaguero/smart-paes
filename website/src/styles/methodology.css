@@ -1,0 +1,10 @@
+/* website/src/styles/methodology.css */
+
+.methodology {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  text-align: justify;
+  width: 60%;
+}
