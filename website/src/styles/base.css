@@ -255,6 +255,18 @@ button:hover {
   border: 2px solid var(--color-button-primary-border-hover);
 }
 
+li {
+  padding: 0;
+  margin: 0;
+  font-family: var(--secondary-font-family);
+}
+
+blockquote {
+  padding: 0;
+  margin: 0;
+  font-family: var(--secondary-font-family);
+}
+
 @media (max-width: 800px) {
   .app-container {
     align-items: center;
